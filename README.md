@@ -36,7 +36,8 @@ All of the names are available in all of the definitions of the functions, as we
 inside the function the letfn is declared in  (not only inside the letfn square brackets like with let) and 
 it's used only for functions. 
 
-- if you need mutual recursion through your local functions, you'll have to letfn them either way.
+- if you need mutual recursion(mutual recursion is a form of recursion where two functions or data types, are defined 
+in terms of each other) through your local functions, you'll have to letfn them either way.
 example :
 ```clojure
 (defn ring [n]
