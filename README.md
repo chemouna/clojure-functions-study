@@ -21,6 +21,34 @@ All of the names are available in all of the definitions of the functions, as we
 => #{{:fname "David", :lname "Smith"} {:fname "Steve", :lname "Smith"}}
 ```
 
+```clojure
+(defn pow [base exp]
+  (letfn [(kapow [base exp acc]
+            (if (zero? exp)
+              acc
+              (recur base (dec exp) (* base acc))))]
+    (kapow base exp 1)))
+
+(pow 2 50)
+```
+
+- letfn is very similar to the let form, with this difference, that declared symbols are available everywhere 
+inside the function the letfn is declared in  (not only inside the letfn square brackets like with let) and 
+it's used only for functions. 
+
+- if you need mutual recursion through your local functions, you'll have to letfn them either way.
+example :
+```clojure
+(defn ring [n]
+  (letfn [(a [n] (if (zero? n) n (b (dec n))))
+          (b [n] (if (zero? n) n (c (dec n))))
+          (c [n] (if (zero? n) n (a (dec n))))]
+    (c n)))
+
+(ring 1000)
+```
+
+
 ### juxt
 
 ## License
